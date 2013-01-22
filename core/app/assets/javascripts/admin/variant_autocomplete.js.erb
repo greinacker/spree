@@ -1,12 +1,13 @@
 <%#encoding: UTF-8%>
 // variant autocompletion
+// bug fix, pending spree >= 1.3.2
 
 $(document).ready(function() {
   window.variantTemplate = Handlebars.compile($('#variant_autocomplete_template').text());
 })
 
 formatVariantResult = function(variant) {
-  if (variant["images"][0] != undefined) {
+  if (variant["images"][0] != undefined && variant["images"][0].image != undefined) {
     variant.image = variant.images[0].image.mini_url
   }
   return variantTemplate({ variant: variant })
